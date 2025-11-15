@@ -1,277 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <!-- #region META & BASE -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio</title>
+  <!-- #endregion META & BASE -->
+
+
+  <!-- #region STYLES -->
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #c1bd9a;
-      color: #4b3621;
-      scroll-behavior: smooth;
-    }
 
-    header {
-      background-color: #646f58;
-      color: #f2e8d9;
-      padding: 2rem 1rem;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
+/* #region GLOBAL */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #c1bd9a;
+  color: #4b3621;
+  scroll-behavior: smooth;
+}
+/* #endregion GLOBAL */
 
-    nav a {
-      color: #f2e8d9;
-      margin: 0 1rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
 
-    nav a:hover {
-      color: #dad7c2;
-    }
+/* #region HEADER STYLE */
+header {
+  background-color: #646f58;
+  color: #f2e8d9;
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
 
-    .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+nav a {
+  color: #f2e8d9;
+  margin: 0 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-    h2 {
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-      color: #4b3621;
-    }
+nav a:hover {
+  color: #dad7c2;
+}
+/* #endregion HEADER STYLE */
 
-    section {
-      margin-bottom: 3rem;
-    }
 
-    /* === ABOUT SECTION === */
-    .about-wrapper {
-      background-color: #dad7c2;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 2rem;
-    }
+/* #region LAYOUT STYLE */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
 
-    .about-text {
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
+h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: #4b3621;
+}
 
-    .about-bottom {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      justify-content: space-between;
-    }
+section {
+  margin-bottom: 3rem;
+}
+/* #endregion LAYOUT STYLE */
 
-    .about-photo img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-      transition: transform 0.4s ease;
-    }
 
-    .about-photo img:hover {
-      transform: scale(1.05);
-    }
+/* #region ABOUT STYLE */
+.about-wrapper {
+  background-color: #dad7c2;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
 
-    .about-facts {
-      flex: 1;
-      background: linear-gradient(145deg, #f2e8d9, #e6ddc4);
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-    }
+.about-text {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
 
-    .about-facts h3 {
-      margin-top: 0;
-    }
+.about-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .about-facts ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+.about-photo img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease;
+}
 
-    .about-facts li {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
+.about-photo img:hover {
+  transform: scale(1.05);
+}
 
-    /* === PROJECTS === */
-    .project {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-      background-color: #dad7c2;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.about-facts {
+  flex: 1;
+  background: linear-gradient(145deg, #f2e8d9, #e6ddc4);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+/* #endregion ABOUT STYLE */
 
-    .project:hover {
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      transform: translateY(-3px);
-    }
 
-    .project .text {
-      flex: 2 1 600px;
-      padding: 2rem;
-    }
+/* #region PROJECT STYLE */
 
-    .project .media {
-      flex: 1 1 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #f2e8d9;
-      padding: 1rem;
-      overflow: hidden;
-      border-radius: 10px;
-    }
+/* Layout */
+.project {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  background-color: #dad7c2;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .project .media img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      transition: transform 0.5s ease;
-    }
+.project:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+}
 
-    .project .media img:hover {
-      transform: scale(1.08);
-    }
+.project .text {
+  flex: 2 1 600px;
+  padding: 2rem;
+}
 
-    /* Hover tab for "Click for more info" */
-    .project .hover-tab {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #646f58;
-      color: #f2e8d9;
-      padding: 0.4rem 1rem;
-      font-size: 0.9rem;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      display: inline-block;
-      pointer-events: none;
-      white-space: nowrap;
-    }
+.project .media {
+  flex: 1 1 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2e8d9;
+  padding: 1rem;
+  overflow: hidden;
+  border-radius: 10px;
+}
 
-    .project:hover .hover-tab {
-      opacity: 1;
-    }
+.project .media img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.5s ease;
+}
 
-    .project .subtitle {
-      font-size: 1rem;
-      color: #646f58;
-      margin-top: -0.5rem;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
+/* #region Project Hover Effects */
+.project .media img:hover {
+  transform: scale(1.08);
+}
 
-    .project.reverse {
-      flex-direction: row-reverse;
-    }
+.project .hover-tab {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #646f58;
+  color: #f2e8d9;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
 
-    /* Expanded overlay */
-    .project-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0,0,0,0.8);
-      color: #f2e8d9;
-      z-index: 1000;
-      overflow-y: auto;
-      padding: 3rem 1rem;
-    }
+.project:hover .hover-tab {
+  opacity: 1;
+}
+/* #endregion Project Hover Effects */
 
-    .project-overlay.active {
-      display: block;
-    }
 
-    .overlay-content {
-      background-color: #dad7c2;
-      color: #4b3621;
-      max-width: 800px;
-      margin: 0 auto;
-      border-radius: 15px;
-      padding: 2rem;
-      position: relative;
-    }
+/* #region Project Layout */
+.project.reverse {
+  flex-direction: row-reverse;
+}
+/* #endregion Project Layout */
 
-    .overlay-content img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
 
-    .overlay-content .close-btn {
-      display: block;
-      margin-top: 1rem;
-      text-align: center;
-      cursor: pointer;
-      font-weight: bold;
-      color: #646f58;
-    }
+/* #region Project Overlay */
+.project-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.8);
+  color: #f2e8d9;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 3rem 1rem;
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background-color: #646f58;
-      color: #f2e8d9;
-    }
+.project-overlay.active {
+  display: block;
+}
 
-    @media (max-width: 768px) {
-      .project, .project.reverse {
-        flex-direction: column;
-      }
+.overlay-content {
+  background-color: #dad7c2;
+  color: #4b3621;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 2rem;
+}
 
-      .project .text, .project .media {
-        flex: 1 1 100%;
-      }
+/* Trailer image */
+.overlay-content .overlay-trailer {
+  display: block;
+  width: 100%;
+  max-height: 50vh;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
 
-      .about-bottom {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
+/* Main body layout */
+.overlay-body {
+  display: flex;
+  gap: 2rem;
+}
 
-      .about-photo img {
-        width: 200px;
-        height: 200px;
-      }
+/* Text column */
+.overlay-text {
+  flex: 2;
+  line-height: 1.6;
+}
 
-      .about-facts {
-        width: 100%;
-        text-align: center;
-      }
+/* Side image column */
+.overlay-side-images {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-      .about-facts li {
-        font-size: 1.1rem;
-      }
-    }
+.overlay-side-images img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  max-height: 200px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .overlay-body {
+    flex-direction: column;
+  }
+
+  .overlay-side-images {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .overlay-side-images img {
+    width: calc(50% - 0.5rem);
+    max-height: 150px;
+  }
+}
+
+/* Overlay image fix */
+.overlay-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Prevent page scroll when overlay is open */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Overlay content layout */
+.overlay-content {
+  background-color: #dad7c2;
+  color: #4b3621;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+/* Trailer image */
+.overlay-trailer {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+/* Two-column layout */
+.overlay-body {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Left text column */
+.overlay-text {
+  flex: 2;
+}
+
+/* Right column with images */
+.overlay-side-images {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.overlay-side-images img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Close button */
+.close-btn {
+  margin-top: 2rem;
+  background-color: #646f58;
+  color: #f2e8d9;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.close-btn:hover {
+  background-color: #7b896d;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .overlay-body {
+    flex-direction: column;
+  }
+
+  .overlay-side-images img {
+    max-height: 200px;
+  }
+}
+/* #endregion Project Overlay */
+
+/* #endregion PROJECT STYLE */
+
+
+/* #region RESPONSIVE */
+@media (max-width: 768px) {
+  .project, .project.reverse {
+    flex-direction: column;
+  }
+
+  .project .text, .project .media {
+    flex: 1 1 100%;
+  }
+
+  .about-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-photo img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-facts {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-facts li {
+    font-size: 1.1rem;
+  }
+}
+/* #endregion RESPONSIVE */
+
+
   </style>
+  <!-- #endregion STYLES -->
+
 </head>
 <body>
 
+  <!-- #region HEADER DOM -->
   <header>
     <h1>Elsa Allerth (Plump)</h1>
     <p>Game Designer</p>
@@ -281,10 +408,12 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
+  <!-- #endregion HEADER DOM -->
+
 
   <div class="container">
 
-    <!-- ABOUT SECTION -->
+    <!-- #region ABOUT DOM -->
     <section id="about">
       <h2>About Me</h2>
       <div class="about-wrapper">
@@ -309,74 +438,152 @@
         </div>
       </div>
     </section>
+    <!-- #endregion ABOUT DOM -->
 
-    <!-- PROJECTS SECTION -->
+
+    <!-- #region PROJECTS DOM -->
     <section id="projects">
       <h2>My Projects</h2>
 
-<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/MFI5VMTMulQ?si=CeTXK6QEDTcEQxqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+      <!-- #region KINDREAD SPIRITS DOM-->
 
       <div class="project" data-title="Kindread Spirits" data-desc="An asymmetric couch co-op environmental puzzle game. Play as two characterizations of death, using your different mechanics to solve environmental puzzles and find a way out of a mysterious realm. My main focus was designing the puzzles, building the levels, tweaking and balancing the mechanics as well as documentation and making sure that the group was communicating well. This was a game project in the course 'Spelprojekt 2' where I was the only designer, as well as the project leader." data-img="./Media/KindreadSpiritsLandscape (1).png">
         <div class="text">
           <h3>Kindread Spirits</h3>
           <p class="subtitle">Game Design, Level Design, Project Lead</p>
-          <p>An asymmetric couch co-op environmental puzzle game...</p>
+          <p>An asymmetric couch co-op environmental puzzle game. Play as two characterizations of death, using your different mechanics to solve environmental puzzles and find a way out of a mysterious realm.</p>
         </div>
         <div class="media">
           <img src="./Media/KindreadSpiritsLandscape (1).png" alt="Kindread Spirits screenshot">
         </div>
         <div class="hover-tab">Click for more info</div>
       </div>
+      
+      <!-- #endregion KINDREAD SPIRITS DOM-->
 
-      <div class="project reverse" data-title="Seagull vs Slingshots" data-desc="A 2D platformer where you play as a young child taking her revenge on the seagulls who stole her cookie. The game contains some skill-based platforming, but it's mostly just a cinematic bullet hell." data-img="">
+      <!-- #region SEAGULLS VS SLINGSHOTS DOM-->
+
+      <div class="project reverse" data-title="Seagull vs Slingshots" data-desc="A 2D platformer where you play as a young child taking her revenge on the seagulls who stole her cookie. The game contains some skill-based platforming, but it's mostly just a cinematic bullet hell." data-img="./Media/SeagullsVSslingshots.gif">
         <div class="text">
           <h3>Seagull vs Slingshots</h3>
           <p class="subtitle">Game Design, Level Design, Programming (GML), Graphics</p>
-          <p>A 2D platformer where you play as a young child taking her revenge...</p>
+          <p>A 2D platformer where you play as a young child taking her revenge on the seagulls who stole her cookie. The game contains some skill-based platforming, but it's mostly just a cinematic bullet hell.</p>
         </div>
         <div class="media">
-          <img src="" alt="Seagull vs Slingshots screenshot">
+          <img src="./Media/SeagullsVSslingshots.gif" alt="Seagull vs Slingshots screenshot">
         </div>
         <div class="hover-tab">Click for more info</div>
       </div>
 
-      <div class="project" data-title="Necroplasty" data-desc="A game jam project with the theme 'harvest'. You play as a former surgeon who turned into a scarecrow and now runs a highly unethical limb-replacement clinic. Harvest organs, weed the fields, stop limbs from running away and save your patients." data-img="">
+      <!-- #endregion SEAGULLS VS SLINGSHOTS DOM-->
+
+      <!-- #region ESCAME THE DUMBGEON DOM-->
+
+          <div class="project" data-title="Escape the Dumbgeon" data-desc="A game jam project with the theme 'starting in the depths'. This is a first person walking sim with a hint of platforming and a lot of stupidity." data-img="./Media/ETD-screenshot.png">
         <div class="text">
-          <h3>Necroplasty</h3>
-          <p class="subtitle">Game Design, Programming (GML)</p>
-          <p>A game jam project with the theme 'harvest'...</p>
+          <h3>Escape the Dumbgeon</h3>
+          <p class="subtitle">Game Design, Level Design, VFX</p>
+          <p>A game jam project with the theme 'starting in the depths'. This is a first person walking sim with a hint of platforming and a lot of stupidity.</p>
         </div>
         <div class="media">
-          <img src="" alt="Necroplasty screenshot">
+          <img src="./Media/ETD-screenshot.png" alt="Screenshot of the game">
         </div>
         <div class="hover-tab">Click for more info</div>
       </div>
-    </section>
 
-    <!-- CONTACT SECTION -->
+      <!-- #endregion ESCAME THE DUMBGEON DOM-->
+
+      <!-- #region NECROPLASTY DOM-->
+
+        <div class="project reverse" data-title="Necroplasty" data-desc="A game jam project with the theme 'harvest'. You play as a former surgeon who turned into a scarecrow and now runs a highly unethical limb-replacement clinic. Harvest organs, weed the fields, stop limbs from running away and save your patients." data-img="./Media/Main-Menu-Background.png">
+          <div class="text">
+            <h3>Necroplasty</h3>
+            <p class="subtitle">Game Design, Programming (GML)</p>
+            <p>A game jam project with the theme 'harvest'. You play as a former surgeon who turned into a scarecrow and now runs a highly unethical limb-replacement clinic. Harvest organs, weed the fields, stop limbs from running away and save your patients.</p>
+          </div>
+          <div class="media">
+            <img src="./Media/Main-Menu-Background.png" alt="Necroplasty screenshot">
+          </div>
+          <div class="hover-tab">Click for more info</div>
+        </div>
+
+      <!-- #endregion NECROPLASTY DOM-->
+    </section>
+    
+
+    <!-- #endregion PROJECTS DOM -->
+
+
+    <!-- #region CONTACT DOM -->
     <section id="contact">
       <h2>Contact</h2>
       <p>You can reach me via email at: <a href="mailto:elsa.plumppu@gmail.com">elsa.plumppu@gmail.com</a></p>
     </section>
+    <!-- #endregion CONTACT DOM -->
 
   </div>
 
+
+  <!-- #region FOOTER -->
   <footer>
     <p>&copy; 2025 Elsa - Game Designer</p>
   </footer>
+  <!-- #endregion FOOTER -->
 
-  <!-- Overlay for project info -->
-  <div class="project-overlay" id="projectOverlay">
-    <div class="overlay-content" id="overlayContent">
-      <h2 id="overlayTitle"></h2>
-      <img id="overlayImg" src="" alt="">
-      <p id="overlayDesc"></p>
-      <div class="close-btn" id="overlayClose">Click to collapse</div>
+
+<!-- #region PROJECT OVERLAY -->
+<div class="project-overlay" id="projectOverlay">
+  <div class="overlay-content" id="overlayContent">
+
+    <!-- Trailer / huvudbild -->
+    <img class="overlay-trailer" id="overlayImg" src="" alt="Project trailer image">
+
+    <!-- Layout-wrapper -->
+    <div class="overlay-body">
+
+      <!-- Vänster: text -->
+      <div class="overlay-text">
+        <h2 id="overlayTitle"></h2>
+        <p id="overlayDesc"></p>
+
+        <h3>Arbetsprocess</h3>
+        <p>
+          Här kan du skriva om hur du arbetat, vad som ändrades längs vägen,
+          referenser, skisser, planering osv.
+        </p>
+
+        <h3>Designidéer</h3>
+        <p>
+          Skriv om varför projektet ser ut som det gör, inspirationskällor,
+          stilval osv.
+        </p>
+
+        <h3>Tekniker</h3>
+        <p>
+          Material, verktyg, program, modelleringsmetoder eller vad du vill nämna.
+        </p>
+      </div>
+
+      <!-- Höger: sidobilder -->
+      <div class="overlay-side-images">
+        <img src="" alt="Extra image 1">
+        <img src="" alt="Extra image 2">
+        <img src="" alt="Extra image 3">
+      </div>
+
     </div>
-  </div>
 
+    <!-- Stäng-knapp -->
+    <div class="close-btn" id="overlayClose">Click to collapse</div>
+  </div>
+</div>
+<!-- #endregion PROJECT OVERLAY -->
+
+
+  <!-- #region SCRIPT -->
   <script>
-    // Smooth scroll for navigation links
+
+    // #region SMOOTH SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -389,8 +596,10 @@
         }
       });
     });
+    // #endregion SMOOTH SCROLL
 
-    // Expandable project overlay
+
+    // #region PROJECT OVERLAY LOGIC
     const projects = document.querySelectorAll('.project');
     const overlay = document.getElementById('projectOverlay');
     const overlayTitle = document.getElementById('overlayTitle');
@@ -415,7 +624,12 @@
     overlay.addEventListener('click', e => {
       if (e.target === overlay) overlay.classList.remove('active');
     });
+    // #endregion PROJECT OVERLAY LOGIC
+
+    
+
   </script>
+  <!-- #endregion SCRIPT -->
 
 </body>
 </html>
