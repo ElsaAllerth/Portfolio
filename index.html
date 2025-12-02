@@ -12,6 +12,11 @@
   <!-- #region STYLES -->
   <style>
 
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 /* #region GLOBAL */
 body {
   margin: 0;
@@ -135,7 +140,8 @@ section {
 }
 
 .project .media {
-  flex: 1 1 300px;
+  flex: 1 1 300px;       /* Låter bilden växa men med minimum */
+  max-width: 400px;      /* Begränsar storleken */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,10 +215,12 @@ section {
 .overlay-content {
   background-color: #dad7c2;
   color: #4b3621;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;  /* begränsar bredden på stora skärmar */
+  width: 90%;        /* gör att den blir responsiv på små skärmar */
+  margin: 0 auto;    /* centrerar boxen */
   border-radius: 15px;
-  padding: 2rem;
+  padding: 2rem;     /* padding inuti boxen */
+  box-sizing: border-box; /* så att padding inte gör boxen större än width */
 }
 
 /* Trailer image */
@@ -253,21 +261,7 @@ section {
 }
 
 /* Responsive layout */
-@media (max-width: 768px) {
-  .overlay-body {
-    flex-direction: column;
-  }
 
-  .overlay-side-images {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .overlay-side-images img {
-    width: calc(50% - 0.5rem);
-    max-height: 150px;
-  }
-}
 
 /* Overlay image fix */
 .overlay-content img {
@@ -308,6 +302,7 @@ body.no-scroll {
 .overlay-body {
   display: flex;
   gap: 2rem;
+  padding-right: 1rem; /* lägger till utrymme på högersidan */
 }
 
 /* Left text column */
@@ -345,21 +340,41 @@ body.no-scroll {
 }
 
 /* Mobile layout */
-@media (max-width: 768px) {
-  .overlay-body {
-    flex-direction: column;
-  }
 
-  .overlay-side-images img {
-    max-height: 200px;
-  }
+
+.overlay-body {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
+
+.overlay-text {
+  flex: 2 1 300px;
+}
+
+.overlay-side-media {
+  flex: 1 1 200px;
+}
+
+.overlay-side-media img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
 /* #endregion Project Overlay */
 
 /* #endregion PROJECT STYLE */
 
 
 /* #region RESPONSIVE */
+
+
+.overlay-side-media {
+  max-width: 100%;
+}
+
 @media (max-width: 768px) {
   .project, .project.reverse {
     flex-direction: column;
@@ -368,6 +383,7 @@ body.no-scroll {
   .project .text, .project .media {
     flex: 1 1 100%;
   }
+}
 
   .about-bottom {
     flex-direction: column;
@@ -388,9 +404,75 @@ body.no-scroll {
   .about-facts li {
     font-size: 1.1rem;
   }
-}
-/* #endregion RESPONSIVE */
 
+
+.overlay-top img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  /* Overlay layout */
+  .overlay-body {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Text- och bildkolumner */
+  .overlay-text {
+    width: 100%;
+  }
+
+  .overlay-side-images {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .overlay-side-images img {
+    width: calc(50% - 0.25rem);
+    max-height: 150px;
+  }
+
+  /* Overlay-box */
+  .overlay-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  /* Bodyn: projekt-bilder staplas vertikalt */
+  .project, .project.reverse {
+    flex-direction: column;
+  }
+
+  /* About-sektionen */
+  .about-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-photo img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-facts {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-facts li {
+    font-size: 1.1rem;
+  }
+}
+
+/* #endregion RESPONSIVE */
 
   </style>
   <!-- #endregion STYLES -->
@@ -599,32 +681,44 @@ body.no-scroll {
     // #endregion SMOOTH SCROLL
 
 
-    // #region PROJECT OVERLAY LOGIC
-    const projects = document.querySelectorAll('.project');
-    const overlay = document.getElementById('projectOverlay');
-    const overlayTitle = document.getElementById('overlayTitle');
-    const overlayImg = document.getElementById('overlayImg');
-    const overlayDesc = document.getElementById('overlayDesc');
-    const overlayClose = document.getElementById('overlayClose');
+// #region PROJECT OVERLAY LOGIC
+const projects = document.querySelectorAll('.project');
+const overlay = document.getElementById('projectOverlay');
+const overlayTitle = document.getElementById('overlayTitle');
+const overlayImg = document.getElementById('overlayImg');
+const overlayDesc = document.getElementById('overlayDesc');
+const overlayClose = document.getElementById('overlayClose');
 
-    projects.forEach(project => {
-      project.addEventListener('click', () => {
-        overlay.classList.add('active');
-        overlayTitle.textContent = project.dataset.title;
-        overlayImg.src = project.dataset.img;
-        overlayImg.alt = project.dataset.title;
-        overlayDesc.textContent = project.dataset.desc;
-      });
-    });
+projects.forEach(project => {
+  project.addEventListener('click', () => {
+    overlay.classList.add('active');
 
-    overlayClose.addEventListener('click', () => {
-      overlay.classList.remove('active');
-    });
+    // Disable background scrolling
+    document.body.style.overflow = "hidden";
 
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) overlay.classList.remove('active');
-    });
-    // #endregion PROJECT OVERLAY LOGIC
+    overlayTitle.textContent = project.dataset.title;
+    overlayImg.src = project.dataset.img;
+    overlayImg.alt = project.dataset.title;
+    overlayDesc.textContent = project.dataset.desc;
+  });
+});
+
+overlayClose.addEventListener('click', () => {
+  overlay.classList.remove('active');
+
+  // Re-enable scrolling
+  document.body.style.overflow = "";
+});
+
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) {
+    overlay.classList.remove('active');
+
+    // Re-enable scrolling
+    document.body.style.overflow = "";
+  }
+});
+// #endregion PROJECT OVERLAY LOGIC
 
     
 
